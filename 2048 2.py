@@ -43,45 +43,13 @@ class App(threading.Thread): # tkinter loop ran in a thread
 
         scale=6
         n=1
-        r0c0 = Label(self.root, text=str(row1[0]), bg=returncolour(str(row1[0])), width=2*scale, height=scale, borderwidth=n, relief="solid")
-        r0c1 = Label(self.root, text=str(row1[1]), bg=returncolour(str(row1[1])), width=2*scale, height=scale, borderwidth=n, relief="solid")
-        r0c2 = Label(self.root, text=str(row1[2]), bg=returncolour(str(row1[2])), width=2*scale, height=scale, borderwidth=n, relief="solid")
-        r0c3 = Label(self.root, text=str(row1[3]), bg=returncolour(str(row1[3])), width=2*scale, height=scale, borderwidth=n, relief="solid")
 
-        r1c0 = Label(self.root, text=str(row2[0]), bg=returncolour(str(row2[0])), width=2*scale, height=scale, borderwidth=n, relief="solid")
-        r1c1 = Label(self.root, text=str(row2[1]), bg=returncolour(str(row2[1])), width=2*scale, height=scale, borderwidth=n, relief="solid")
-        r1c2 = Label(self.root, text=str(row2[2]), bg=returncolour(str(row2[2])), width=2*scale, height=scale, borderwidth=n, relief="solid")
-        r1c3 = Label(self.root, text=str(row2[3]), bg=returncolour(str(row2[3])), width=2*scale, height=scale, borderwidth=n, relief="solid")
-
-        r2c0 = Label(self.root, text=str(row3[0]), bg=returncolour(str(row3[0])), width=2*scale, height=scale, borderwidth=n, relief="solid")
-        r2c1 = Label(self.root, text=str(row3[1]), bg=returncolour(str(row3[1])), width=2*scale, height=scale, borderwidth=n, relief="solid")
-        r2c2 = Label(self.root, text=str(row3[2]), bg=returncolour(str(row3[2])), width=2*scale, height=scale, borderwidth=n, relief="solid")
-        r2c3 = Label(self.root, text=str(row3[3]), bg=returncolour(str(row3[3])), width=2*scale, height=scale, borderwidth=n, relief="solid")
-
-        r3c0 = Label(self.root, text=str(row4[0]), bg=returncolour(str(row4[0])), width=2*scale, height=scale, borderwidth=n, relief="solid")
-        r3c1 = Label(self.root, text=str(row4[1]), bg=returncolour(str(row4[1])), width=2*scale, height=scale, borderwidth=n, relief="solid")
-        r3c2 = Label(self.root, text=str(row4[2]), bg=returncolour(str(row4[2])), width=2*scale, height=scale, borderwidth=n, relief="solid")
-        r3c3 = Label(self.root, text=str(row4[3]), bg=returncolour(str(row4[3])), width=2*scale, height=scale, borderwidth=n, relief="solid")
-
-        r0c0.grid(row=0,column=0)
-        r0c1.grid(row=0, column=1)
-        r0c2.grid(row=0, column=2)
-        r0c3.grid(row=0, column=3)
-
-        r1c0.grid(row=1,column=0)
-        r1c1.grid(row=1, column=1)
-        r1c2.grid(row=1, column=2)
-        r1c3.grid(row=1, column=3)
-
-        r2c0.grid(row=2,column=0)
-        r2c1.grid(row=2, column=1)
-        r2c2.grid(row=2, column=2)
-        r2c3.grid(row=2, column=3)
-
-        r3c0.grid(row=3,column=0)
-        r3c1.grid(row=3, column=1)
-        r3c2.grid(row=3, column=2)
-        r3c3.grid(row=3, column=3)
+        for i in range(gridsize):
+            r = rows[i]
+            rn = i
+            for i in range(gridsize):
+                l = Label(self.root, text=str(r[i]), bg=returncolour(str(r[i])), width=2*scale, height=scale, borderwidth=n, relief="solid")
+                l.grid(row=rn, column=i)
 
 def returncolour(num):
     if num == "0":
