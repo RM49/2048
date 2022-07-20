@@ -21,26 +21,22 @@ class App(threading.Thread): # tkinter loop ran in a thread
         self.root.quit()
 
     def run(self):
+        # initial tkinter set up
         self.root = Tk()
         self.root.protocol("WM_DELETE_WINDOW", self.callback)
         self.root.geometry("450x450")
         self.root.resizable(width=False, height=False)
-        self.root.config(bg="#ADD8E6")
+        self.root.config(bg="#ADD8E6") # setting background colour
         
-        # gui code
-        
-        row1g = Label(self.root, text=str(row1))
-        row2g = Label(self.root, text=str(row2))
-        row3g = Label(self.root, text=str(row3))
-        row4g = Label(self.root, text=str(row4))
-
 
         self.root.bind("<Key>", keypress)
-        time.sleep(1)
+        time.sleep(1) # delay to mainloop so that other code can be set up to avoid errors
         self.root.mainloop()
 
     def labels(self):
-
+        
+        # code to draw the grid
+        
         scale=6
         n=1
 
@@ -51,7 +47,7 @@ class App(threading.Thread): # tkinter loop ran in a thread
                 l = Label(self.root, text=str(r[i]), bg=returncolour(str(r[i])), width=2*scale, height=scale, borderwidth=n, relief="solid")
                 l.grid(row=rn, column=i)
 
-def returncolour(num):
+def returncolour(num): # tells the gui code what colour for each number
     if num == "0":
         return "#CCBBAA"
     if num == "2":
@@ -62,14 +58,7 @@ def returncolour(num):
         return "#FFA500"
     return "#FFFFFF"
 
-def printgrid(event):
-    print(row1)
-    print(row2)
-    print(row3)
-    print(row4)
-    print("\n")
-
-def keypress(event):
+def keypress(event): # takes a tkinter keypress events, sends a call to the function for the direction of movement and tracks whether a move has been made to choose whether to add a new number
     print(event.char, event.keysym)
     temp = [list(row1), list(row2), list(row3), list(row4)]
     if event.char == "r" or event.keysym == "Right":
@@ -87,7 +76,7 @@ def keypress(event):
         addrandom()
     app.labels()
 
-def addrandom(): # adds either a 2 or a 4 square to an empty slot when a valid move made
+def addrandom(): # adds either a 2 or a 4 square to an empty slot when a valid move has been made
     global rows
     numbers = [2, 2, 2, 2, 2, 2, 2, 2, 2, 4]
     num = random.choice(numbers)
@@ -147,40 +136,10 @@ def moveUp():
                 r2[i] = r[i]
                 r[i] = 0
 
-addrandom()
+addrandom() # first square
 
 
 app = App()
-time.sleep(1)
-app.labels()
-
-
-
-##while True:# main game loop
-##    inp = input()
-
-##    print(temp)
-##    if inp == "u":
-##        moveUp()
-##    elif inp == "d":
-##        moveDown()
-##    elif inp == "l":
-##        moveLeft()
-##    elif inp == "r":
-##        moveRight()
-##    elif inp == "0":
-##        break
-##    print(rows)
-##    app.labels()
-
-
-    
-
-
-    
-            
-        
-
-
-    
+time.sleep(1) # delay to avoid errors with threading
+app.labels() # first grid draw
 
